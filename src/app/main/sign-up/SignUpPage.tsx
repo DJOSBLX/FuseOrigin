@@ -184,9 +184,7 @@ function SignUpPage() {
 							<Avatar src="assets/images/avatars/male-16.jpg" />
 						</AvatarGroup>
 
-						<div className="ml-16 font-medium tracking-tight text-gray-400">
-							More than 17k people joined us, it's your turn
-						</div>
+						
 					</div>
 				</div>
 			</Box>
