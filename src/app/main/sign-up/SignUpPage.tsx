@@ -6,7 +6,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
-import _ from '@lodash';
+import _ from 'lodash';
 import Paper from '@mui/material/Paper';
 import FormHelperText from '@mui/material/FormHelperText';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -17,8 +17,10 @@ import { z } from 'zod';
  */
 const schema = z
 	.object({
-		name: z.string().nonempty('You must enter your name'),
-		email: z.string().email('You must enter a valid email').nonempty('You must enter an email'),
+		affiliateId: z.string().nonempty('Affiliate ID is required'),
+		username: z.string().nonempty('Username is required'),
+		email: z.string().email('You must enter a valid email').nonempty('Email is required'),
+		phone: z.string().nonempty('Phone number is required'),
 		password: z
 			.string()
 			.nonempty('Please enter your password.')
@@ -32,8 +34,10 @@ const schema = z
 	});
 
 const defaultValues = {
-	name: '',
+	affiliateId: '',
+	username: '',
 	email: '',
+	phone: '',
 	password: '',
 	passwordConfirm: '',
 	acceptTermsConditions: false
@@ -56,11 +60,11 @@ function SignUpPage() {
 	}
 
 	return (
-		<div className="flex min-w-0 flex-auto flex-col items-center sm:justify-center">
+		<div className="flex min-w-0 flex-auto flex-col items-center justify-center min-h-screen">
 			<Paper className="min-h-full w-full rounded-0 px-16 py-32 sm:min-h-auto sm:w-auto sm:rounded-2xl sm:p-48 sm:shadow">
-				<div className="mx-auto w-full max-w-320 sm:mx-0 sm:w-320">
+				<div className="mx-auto w-full max-w-320 sm:mx-0 sm:w-320 text-center">
 					<img
-						className="w-48"
+						className="w-48 mx-auto"
 						src="assets/images/logo/logo.svg"
 						alt="logo"
 					/>
@@ -68,7 +72,7 @@ function SignUpPage() {
 					<Typography className="mt-32 text-4xl font-extrabold leading-tight tracking-tight">
 						Sign up
 					</Typography>
-					<div className="mt-2 flex items-baseline font-medium">
+					<div className="mt-2 flex items-baseline font-medium justify-center">
 						<Typography>Already have an account?</Typography>
 						<Link
 							className="ml-4"
@@ -85,17 +89,35 @@ function SignUpPage() {
 						onSubmit={handleSubmit(onSubmit)}
 					>
 						<Controller
-							name="name"
+							name="affiliateId"
 							control={control}
 							render={({ field }) => (
 								<TextField
 									{...field}
 									className="mb-24"
-									label="Name"
+									label="Affiliate ID"
 									autoFocus
-									type="name"
-									error={!!errors.name}
-									helperText={errors?.name?.message}
+									type="text"
+									error={!!errors.affiliateId}
+									helperText={errors?.affiliateId?.message}
+									variant="outlined"
+									required
+									fullWidth
+								/>
+							)}
+						/>
+
+						<Controller
+							name="username"
+							control={control}
+							render={({ field }) => (
+								<TextField
+									{...field}
+									className="mb-24"
+									label="Username"
+									type="text"
+									error={!!errors.username}
+									helperText={errors?.username?.message}
 									variant="outlined"
 									required
 									fullWidth
@@ -114,6 +136,24 @@ function SignUpPage() {
 									type="email"
 									error={!!errors.email}
 									helperText={errors?.email?.message}
+									variant="outlined"
+									required
+									fullWidth
+								/>
+							)}
+						/>
+
+						<Controller
+							name="phone"
+							control={control}
+							render={({ field }) => (
+								<TextField
+									{...field}
+									className="mb-24"
+									label="Phone"
+									type="text"
+									error={!!errors.phone}
+									helperText={errors?.phone?.message}
 									variant="outlined"
 									required
 									fullWidth
@@ -146,7 +186,7 @@ function SignUpPage() {
 								<TextField
 									{...field}
 									className="mb-24"
-									label="Password (Confirm)"
+									label="Confirm Password"
 									type="password"
 									error={!!errors.passwordConfirm}
 									helperText={errors?.passwordConfirm?.message}
