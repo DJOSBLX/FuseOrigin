@@ -11,6 +11,7 @@
     "@emotion/styled": "11.11.5",
     "@hookform/resolvers": "3.6.0",
     "@mui/base": "5.0.0-beta.40",
+    "@mui/icons-material": "^5.15.20",
     "@mui/material": "5.15.19",
     "@mui/styles": "5.15.19",
     "@mui/system": "5.15.15",
@@ -154,7 +155,7 @@
   "scripts": {
     "start": "npm run dev",
     "dev": "vite",
-    "build": "cross-env NODE_OPTIONS=--max-old-space-size=4096 tsc && vite build",
+    "build": "node build-script.js",
     "lint": "eslint . --ext .ts,.tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "build-docs": "node --no-warnings=ExperimentalWarning --loader  ts-node/esm ./src/app/main/documentation/material-ui-components/build.ts",
