@@ -1,0 +1,59 @@
+@import "../../styles/variables.scss";
+
+.menu {
+    .item {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 20px;
+
+        .title {
+            font-size: 20px;  // Increased font size for section titles
+            font-weight: 500; // Adjusted font weight for better visibility
+            color: $dark-color;
+            cursor: pointer;
+            position: relative;
+            padding: 10px;
+            border-radius: 5px;
+
+            &:hover {
+                background-color: $soft-bg;
+            }
+        }
+
+        .dropdown {
+            display: none;
+            flex-direction: column;
+            gap: 5px; // Reduced gap between dropdown items
+            padding-left: 20px;
+            transition: max-height 0.3s ease;
+            max-height: 0;
+            overflow: hidden;
+
+            &.open {
+                display: flex;
+                max-height: 500px; // Adjust as needed
+            }
+
+            .listItem {
+                display: flex;
+                align-items: center;
+                gap: 5px; // Reduced gap between icon and text in dropdown items
+                padding: 5px; // Reduced padding for dropdown items
+                border-radius: 5px;
+
+                &:hover {
+                    background-color: lightblue;
+                }
+
+                img {
+                    width: 18px; // Reduced icon size
+                }
+
+                .listItemTitle {
+                    font-size: 16px; // Reduced font size for dropdown items
+                }
+            }
+        }
+    }
+}
